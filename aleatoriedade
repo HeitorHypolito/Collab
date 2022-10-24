@@ -1,0 +1,23 @@
+import numpy as np
+import matplotlib.pyplot as plt
+rodadas_totais = []
+for x in range(100) :
+    random_walk = [0]
+    for y in range(50) :
+        degrau = random_walk[-1]
+        dado = np.random.randint(1,7)
+        if dado <= 2:
+            degrau = max(0, degrau - 1)
+        elif dado <= 5:
+            degrau = degrau + 1
+        else:
+            degrau = degrau + np.random.randint(1,7)
+        if np.random.rand() <= 0.001 :
+            step = 0
+        random_walk.append(degrau)
+    rodadas_totais.append(random_walk)
+np_rt_t = np.transpose(np.array(rodadas_totais))
+
+ends = np_rt_t[-1, :]
+plt.hist(ends)
+plt.show()
